@@ -20,10 +20,6 @@
     "sequelize-cli": "^5.5.1"
   },
   "_moduleAliases": {
-    "@": ".",
-    "@routes": "./routes",
-    "@controllers": "./controllers",
-    "@models": "./models",
-    "@config": "./config"
+    "@": "."
   }
 }

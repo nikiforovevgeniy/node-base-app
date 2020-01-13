@@ -1,10 +1,11 @@
 require('module-alias/register');
+require('dotenv').config();
 
-const { port } = require('@config/app');
+const config = require('@/config');
 
 (async () => {
 	try {
-		require('@/server').listen(port);
+		require('@/server').listen(config.port);
 		require('@/routes');
 	} catch (error) {
 		console.error(error);

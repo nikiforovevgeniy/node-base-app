@@ -1,7 +1,7 @@
 const express = require('@/express');
 
 const routes = {
-	'/test': '@routes/test',
+	'/user': '@/routes/user',
 }
 
 Object.keys(routes).forEach(rout => {

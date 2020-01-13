@@ -1,20 +1,23 @@
 const Sequelize = require('sequelize');
-const databases = require('@/config/database');
+const config = require('@/config');
 
 const connections = {};
 
-module.exports = function(dbname, dialect='mysql') {
+module.exports = function(dbname='default') {
 	if (!connections[dbname]) {
-		const {database, user, password, host} = databases[dbname];
-
-		connections[dbname] = new Sequelize(database, user, password, {
-			dialect,
-			host,
+		connections[dbname] = new Sequelize(config.db[dbname].database, config.db[dbname].user, config.db[dbname].password, {
+			dialect: config.db[dbname].dialect,
+			host: config.db[dbname].host,
 			define: {
 				timestamps: false,
 			},
 			logging: false,
 		});
 	}
-	return connections[dbname];
+	return {
+		connection: connections[dbname],
+		import (path) {
+			return require('@/models/user')(connections[dbname], Sequelize);
+		},
+	}
 }
