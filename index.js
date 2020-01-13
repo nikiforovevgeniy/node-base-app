@@ -1,10 +1,10 @@
 require('module-alias/register');
 
-const config = require('@config');
+const { port } = require('@config/app');
 
 (async () => {
 	try {
-		require('@/server').listen(config.port);
+		require('@/server').listen(port);
 		require('@/routes');
 	} catch (error) {
 		console.error(error);
