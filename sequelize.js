@@ -5,7 +5,7 @@ const connections = {};
 
 module.exports = function(dbname='default') {
 	if (!connections[dbname]) {
-		connections[dbname] = new Sequelize(config.db[dbname].database, config.db[dbname].user, config.db[dbname].password, {
+		connections[dbname] = new Sequelize(config.db[dbname].database, config.db[dbname].username, config.db[dbname].password, {
 			dialect: config.db[dbname].dialect,
 			host: config.db[dbname].host,
 			define: {
