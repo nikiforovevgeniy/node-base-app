@@ -7,6 +7,7 @@ module.exports = function(dbname='default') {
 	if (!connections[dbname]) {
 		connections[dbname] = new Sequelize(config.db[dbname].database, config.db[dbname].username, config.db[dbname].password, {
 			dialect: config.db[dbname].dialect,
+			storage: config.db[dbname].storage,
 			host: config.db[dbname].host,
 			define: {
 				charset: config.db[dbname].charset,
