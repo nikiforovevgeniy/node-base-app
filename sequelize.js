@@ -9,6 +9,10 @@ module.exports = function(dbname='default') {
 			dialect: config.db[dbname].dialect,
 			host: config.db[dbname].host,
 			define: {
+				charset: config.db[dbname].charset,
+				dialectOptions: {
+					collate: config.db[dbname].collate,
+				},
 				timestamps: false,
 			},
 			logging: false,

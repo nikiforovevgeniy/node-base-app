@@ -7,6 +7,8 @@ module.exports = {
 			password: process.env.DB_PASSWORD || '',
 			database: process.env.DB_DB || '',
 			dialect: process.env.DB_DIALECT || 'mysql',
+			charset: process.env.DB_CHARSET || 'utf8',
+			collate: process.env.DB_COLLATE || 'utf8_general_ci',
 		},
 	}
 }
