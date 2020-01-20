@@ -22,7 +22,7 @@ module.exports = function(dbname='default') {
 	return {
 		connection: connections[dbname],
 		import (path) {
-			return require('@/models/user')(connections[dbname], Sequelize);
+			return require(path)(connections[dbname], Sequelize);
 		},
 	}
 }
