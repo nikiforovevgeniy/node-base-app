@@ -1,7 +1,7 @@
 const router = require('express').Router();
-const handleError = require('@/routes/handleError');
+const errorInterceptor = require('@/routes/errorInterceptor');
 const userController = require('@/controllers/user');
 
-router.get('/', handleError(userController.index));
+router.get('/', errorInterceptor(userController.index));
 
 module.exports = router;
