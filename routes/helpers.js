@@ -1,6 +1,6 @@
 const { validationResult } = require('express-validator');
 
-module.exports = function (rules) {
+const requestValidate = function (rules) {
 	return async function (req, res, next) {
 		await Promise.all(rules.map(rule => rule.run(req)));
 
@@ -11,4 +11,19 @@ module.exports = function (rules) {
 			next(new Error(msg));
 		}
 	}
-};
+}
+
+const errorInterceptor = function (fn) {
+	return async function (req, res, next) {
+		try {
+			await fn(req, res, next);
+		} catch (error) {
+			next(error);
+		}
+	}
+}
+
+module.exports = {
+	requestValidate,
+	errorInterceptor,
+}

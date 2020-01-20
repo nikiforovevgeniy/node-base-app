@@ -1,11 +1,9 @@
 const router = require('express').Router();
-const errorInterceptor = require('@/routes/errorInterceptor');
-const requestValidate = require('@/routes/requestValidate');
+const { requestValidate, errorInterceptor } = require('@/routes/helpers');
 const userController = require('@/controllers/user');
 
 router.get(
 	'/',
-	//requestValidate(userController.rules.create),
 	errorInterceptor(userController.index)
 );
 
