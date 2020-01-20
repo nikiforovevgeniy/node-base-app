@@ -6,6 +6,7 @@ const requestValidate = function (rules) {
 
 		try {
 			validationResult(req).throw();
+			next();
 		} catch (error) {
 			const [{param, msg}] = validationResult(req).array();
 			next(new Error(msg));
