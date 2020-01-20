@@ -4,7 +4,13 @@ const userController = require('@/controllers/user');
 
 router.get(
 	'/',
-	errorInterceptor(userController.index)
+	errorInterceptor(userController.getAll)
+);
+
+router.post(
+	'/',
+	requestValidate(userController.validationRules.create),
+	errorInterceptor(userController.create)
 );
 
 module.exports = router;
