@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { requestValidate, errorInterceptor } = require('@/routes/helpers');
-const { validationRules: rules, getAll, create } = require('@/controllers/user');
+const { validationRules: rules, getAll, create } = require('@/controllers/users');
 
 router.get(
 	'/',
