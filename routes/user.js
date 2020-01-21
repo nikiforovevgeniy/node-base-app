@@ -1,16 +1,16 @@
 const router = require('express').Router();
 const { requestValidate, errorInterceptor } = require('@/routes/helpers');
-const userController = require('@/controllers/user');
+const { validationRules: rules, getAll, create } = require('@/controllers/user');
 
 router.get(
 	'/',
-	errorInterceptor(userController.getAll)
+	errorInterceptor(getAll)
 );
 
 router.post(
 	'/',
-	requestValidate(userController.validationRules.create),
-	errorInterceptor(userController.create)
+	requestValidate(rules.create),
+	errorInterceptor(create)
 );
 
 module.exports = router;
