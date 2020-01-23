@@ -1,5 +1,5 @@
 const { body } = require('express-validator');
-const { User } = require('@/models');
+const User = require('@/models/user');
 
 module.exports = {
 
@@ -20,12 +20,13 @@ module.exports = {
 	},
 
 	async getAll (req, res, next) {
-		const users = await User.findAll();
+		const users = await User.fetchAll();
 		res.json(users);
 	},
 
 	async create (req, res, next) {
-		const user = await User.create(req.body);
+		const user = new User(req.body);
+		await user.save();
 		res.json(user);
 	},
 

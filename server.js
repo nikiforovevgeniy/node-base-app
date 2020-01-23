@@ -1,10 +1,4 @@
 const express = require('@/express');
+const server = require('http').Server(express);
 
-let server = null;
-
-module.exports = (() => {
-	if (!server) {
-		server = require('http').Server(express);
-	}
-	return server;
-})();
+module.exports = server;

@@ -1,12 +1,6 @@
 const bodyParser = require('body-parser');
+const express = require('express')();
 
-let express = null;
+express.use(bodyParser.json());
 
-module.exports = (() => {
-	if (!express) {
-		express = require('express')();
-		
-		express.use(bodyParser.json());
-	}
-	return express;
-})();
+module.exports = express;
