@@ -25,8 +25,7 @@ module.exports = {
 	},
 
 	async create (req, res, next) {
-		const user = new User(req.body);
-		await user.save();
+		const user = await User.forge(req.body).save();
 		res.json(user);
 	},
 
