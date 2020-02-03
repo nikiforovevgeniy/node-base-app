@@ -2,34 +2,34 @@
 to: routes/<%= h.inflection.pluralize(name) %>.js
 ---
 const router = require('express').Router();
-const { requestValidate, errorInterceptor } = require('@/routes/helpers');
+const { requestValidate, responseJSON } = require('@/routes/helpers');
 const { validationRules: rules, getAll, getOne, create, update, remove } = require('@/controllers/<%= h.inflection.pluralize(name) %>');
 
 router.get(
 	'/',
-	errorInterceptor(getAll)
+	responseJSON(getAll)
 );
 
 router.get(
 	'/:id',
-	errorInterceptor(getOne)
+	responseJSON(getOne)
 );
 
 router.post(
 	'/',
 	requestValidate(rules.create),
-	errorInterceptor(create)
+	responseJSON(create)
 );
 
 router.patch(
 	'/:id',
 	requestValidate(rules.create),
-	errorInterceptor(update)
+	responseJSON(update)
 );
 
 router.delete(
 	'/:id',
-	errorInterceptor(remove)
+	responseJSON(remove)
 );
 
 module.exports = router;

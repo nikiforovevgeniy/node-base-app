@@ -7,32 +7,30 @@ const { <%= Name %> } = require('@/models');
 module.exports = {
 
 	validationRules: {
-		//
+		create: [
+			//
+		],
 	},
 
-	async getAll (req, res, next) {
-		const <%= h.inflection.pluralize(name) %> = await <%= Name %>.fetchAll();
-		res.json(<%= h.inflection.pluralize(name) %>);
+	async getAll () {
+		return = await <%= Name %>.fetchAll();
 	},
 
-	async getOne ({ params: { id } }, res, next) {
-		const <%= name %> = await <%= Name %>.forge({id}).fetch();
-		res.json(<%= name %>);
+	async getOne ({ id }) {
+		return await <%= Name %>.forge({id}).fetch();
 	},
 
-	async create ({ body: {tags, ...data} }, res, next) {
-		const <%= name %> = await <%= Name %>.forge().save(data);
-		res.json(<%= name %>);
+	async create (data) {
+		return await <%= Name %>.forge(data).save();
 	},
 
-	async update ({ params: { id }, body: {tags, ...data} }, res, next) {
-		const <%= name %> = await <%= Name %>.forge({id}).save(data);
-		res.json(<%= name %>);
+	async update ({ id, ...data }) {
+		return await <%= Name %>.forge({id}).save(data);
 	},
 
-	async remove ({ params: { id } }, res, next) {
-		const <%= name %> = await <%= Name %>.forge({id});
-		res.json({id});
+	async remove ({ id }) {
+		await <%= Name %>.forge({id}).destroy();
+		return { id };
 	},
 
 }

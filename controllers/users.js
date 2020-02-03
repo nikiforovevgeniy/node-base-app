@@ -19,14 +19,12 @@ module.exports = {
 		],
 	},
 
-	async getAll (req, res, next) {
-		const users = await User.fetchAll();
-		res.json(users);
+	async getAll () {
+		return await User.fetchAll();
 	},
 
-	async create (req, res, next) {
-		const user = await User.forge(req.body).save();
-		res.json(user);
+	async create (data) {
+		return await User.forge(data).save();
 	},
 
 }

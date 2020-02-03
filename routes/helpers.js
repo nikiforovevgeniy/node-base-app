@@ -14,10 +14,15 @@ const requestValidate = function (rules) {
 	}
 }
 
-const errorInterceptor = function (fn) {
+const responseJSON = function (fn) {
 	return async function (req, res, next) {
 		try {
-			await fn(req, res, next);
+			const result = await fn({
+				...req.query,
+				...req.body,
+				...req.params,
+			});
+			res.json(result);
 		} catch (error) {
 			next(error);
 		}
@@ -26,5 +31,5 @@ const errorInterceptor = function (fn) {
 
 module.exports = {
 	requestValidate,
-	errorInterceptor,
+	requestHandler,
 }
