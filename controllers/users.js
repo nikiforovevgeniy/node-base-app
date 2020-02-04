@@ -23,7 +23,7 @@ module.exports = {
 		return await User.fetchAll();
 	},
 
-	async create (data) {
+	async create ({ body: data }) {
 		return await User.forge(data).save();
 	},
 

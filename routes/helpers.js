@@ -18,9 +18,10 @@ const responseJSON = function (fn) {
 	return async function (req, res, next) {
 		try {
 			const result = await fn({
-				...req.query,
-				...req.body,
-				...req.params,
+				query: req.query,
+				body: req.body,
+				params: req.params,
+				user: req.user || null,
 			});
 			res.json(result);
 		} catch (error) {
@@ -31,5 +32,5 @@ const responseJSON = function (fn) {
 
 module.exports = {
 	requestValidate,
-	requestHandler,
+	responseJSON,
 }

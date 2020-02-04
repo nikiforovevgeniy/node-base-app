@@ -7,7 +7,7 @@ exports.seed = async function(knex) {
 		{
 			name: 'test',
 			email: 'test@test.ru',
-			password: '$2y$10$u.wGDSYogq8ZbkIkLR1C1Oe5YRNEHU2kPh5O9kEz42VpAcRadYoAW', //12345
+			password: '$2b$10$iP9ePnF78ye5MMaNRMUeOu7t7jxD5Q3tKxTqAmCptz9mtxFPCUtc2', //12345
 		},
 	]);
 }

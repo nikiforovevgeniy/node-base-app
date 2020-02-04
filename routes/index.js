@@ -1,6 +1,7 @@
 const express = require('@/express');
 
 const routes = {
+	'/auth': '@/routes/auth',
 	'/users': '@/routes/users',
 }
 

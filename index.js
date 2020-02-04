@@ -6,6 +6,7 @@ const config = require('@/config');
 (async () => {
 	try {
 		require('@/server').listen(config.port);
+		require('@/passport');
 		require('@/routes');
 	} catch (error) {
 		console.error(error);
