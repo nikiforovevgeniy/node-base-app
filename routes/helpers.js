@@ -1,19 +1,20 @@
 const passport = require('passport');
+const rbac = require('@/rbac');
 const ForbiddenError = require('@/errors/http/forbidden');
 const { validationResult } = require('express-validator');
 
-/*const permission = function (fn) {
+const checkPermission = function (fn) {
 	return async function (req, res, next) {
 		try {
-			const { groups, action, params } = fn(req.user);
-			const result = await rbac.can(user, action, params);
+			const { roles, permission, params } = fn(req.user);
+			const result = await rbac.can(roles, permission, params);
 			if (!result) throw new ForbiddenError();
 			next();
 		} catch (error) {
 			next(error);
 		}
 	}
-}*/
+}
 
 const authenticate = function (strategy, options={}) {
 	return passport.authenticate(strategy, {
@@ -53,6 +54,7 @@ const responseJSON = function (fn) {
 }
 
 module.exports = {
+	checkPermission,
 	authenticate,
 	validate,
 	responseJSON,

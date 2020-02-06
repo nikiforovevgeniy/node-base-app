@@ -1,24 +1,24 @@
 const router = require('express').Router();
-const { authenticate, validate, responseJSON } = require('@/routes/helpers');
+const { checkPermission, authenticate, validate, responseJSON } = require('@/routes/helpers');
 const { validation: rules, getAll, create } = require('@/controllers/users');
 
 router.get(
 	'/',
 	authenticate('jwt'),
-	/*permission(user => ({
-		groups: user.groups,
-		actions: 'users:show',
-	})),*/
+	checkPermission(user => ({
+		roles: user.role,
+		permission: 'users:getAll',
+	})),
 	responseJSON(getAll)
 );
 
 router.post(
 	'/',
 	authenticate('jwt'),
-	/*permission(user => ({
-		groups: user.groups,
-		actions: 'users:show',
-	})),*/
+	checkPermission(user => ({
+		roles: user.role,
+		permission: 'users:create',
+	})),
 	validate([
 		rules.firstName,
 		rules.lastName,
