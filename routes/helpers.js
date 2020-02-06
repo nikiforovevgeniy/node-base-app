@@ -1,6 +1,25 @@
+const passport = require('passport');
 const { validationResult } = require('express-validator');
 
-const requestValidate = function (rules) {
+/*const rbac = function (user, action, params) {
+	return async function (req, res, next) {
+		try {
+			const result = await rbac.can(user, action, params);
+			if (!result) throw new HttpError(403, 'Доступ запрещен');
+		} catch (error) {
+			next(error);
+		}
+	}
+}*/
+
+const authenticate = function (strategy, options={}) {
+	return passport.authenticate(strategy, {
+		session: false,
+		...strategy,
+	})
+}
+
+const validate = function (rules) {
 	return async function (req, res, next) {
 		await Promise.all(rules.map(rule => rule.run(req)));
 
@@ -31,6 +50,7 @@ const responseJSON = function (fn) {
 }
 
 module.exports = {
-	requestValidate,
+	authenticate,
+	validate,
 	responseJSON,
 }

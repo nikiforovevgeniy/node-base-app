@@ -1,15 +1,15 @@
 const router = require('express').Router();
 const passport = require('passport');
-const { requestValidate, responseJSON } = require('@/routes/helpers');
+const { authenticate, validate, responseJSON } = require('@/routes/helpers');
 const { validationRules: rules, getJWT } = require('@/controllers/auth');
 
 router.post(
 	'/',
-	requestValidate([
+	validate([
 		...rules.email,
 		...rules.password,
 	]),
-	passport.authenticate('local', { session: false }),
+	authenticate('local'),
 	responseJSON(getJWT)
 );
 
