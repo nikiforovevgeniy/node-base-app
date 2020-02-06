@@ -2,9 +2,10 @@ const passport = require('passport');
 const ForbiddenError = require('@/errors/http/forbidden');
 const { validationResult } = require('express-validator');
 
-/*const permission = function (user, action, params) {
+/*const permission = function (fn) {
 	return async function (req, res, next) {
 		try {
+			const { groups, action, params } = fn(req.user);
 			const result = await rbac.can(user, action, params);
 			if (!result) throw new ForbiddenError();
 			next();

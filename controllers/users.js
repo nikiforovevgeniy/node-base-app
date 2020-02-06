@@ -1,22 +1,20 @@
-const { body } = require('express-validator');
+const { check } = require('express-validator');
 const { User } = require('@/models');
 
 module.exports = {
 
-	validationRules: {
-		create: [
-			body('firstName')
-				.exists({ checkNull: true, checkFalsy: true })
-				.withMessage('Имя не указано'),
-			body('lastName')
-				.exists({ checkNull: true, checkFalsy: true })
-				.withMessage('Фамилия не указана'),
-			body('email')
-				.exists({ checkNull: true, checkFalsy: true })
-				.withMessage('Email не указан')
-				.isEmail()
-				.withMessage('Email невалидный'),
-		],
+	validation: {
+		firstName: check('firstName')
+			.exists({ checkNull: true, checkFalsy: true })
+			.withMessage('Имя не указано'),
+		lastName: check('lastName')
+			.exists({ checkNull: true, checkFalsy: true })
+			.withMessage('Фамилия не указана'),
+		email: check('email')
+			.exists({ checkNull: true, checkFalsy: true })
+			.withMessage('Email не указан')
+			.isEmail()
+			.withMessage('Email невалидный'),
 	},
 
 	async getAll () {
