@@ -1,15 +1,13 @@
 ---
 to: controllers/<%= h.inflection.pluralize(name) %>.js
 ---
-const { body } = require('express-validator');
+const { check } = require('express-validator');
 const { <%= Name %> } = require('@/models');
 
 module.exports = {
 
-	validationRules: {
-		create: [
-			//
-		],
+	validation: {
+		//
 	},
 
 	async getAll () {

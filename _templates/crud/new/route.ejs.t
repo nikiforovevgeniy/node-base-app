@@ -2,33 +2,62 @@
 to: routes/<%= h.inflection.pluralize(name) %>.js
 ---
 const router = require('express').Router();
-const { requestValidate, responseJSON } = require('@/routes/helpers');
-const { validationRules: rules, getAll, getOne, create, update, remove } = require('@/controllers/<%= h.inflection.pluralize(name) %>');
+const { checkPermission, authenticate, validate, responseJSON } = require('@/routes/helpers');
+const { validation: rules, getAll, getOne, create, update, remove } = require('@/controllers/<%= h.inflection.pluralize(name) %>');
 
 router.get(
 	'/',
+	authenticate('jwt'),
+	checkPermission(user => ({
+		roles: user.role,
+		permission: '<%= h.inflection.pluralize(name) %>:getAll',
+	})),
 	responseJSON(getAll)
 );
 
 router.get(
 	'/:id',
+	authenticate('jwt'),
+	checkPermission(user => ({
+		roles: user.role,
+		permission: '<%= h.inflection.pluralize(name) %>:getOne',
+	})),
 	responseJSON(getOne)
 );
 
 router.post(
 	'/',
-	requestValidate(rules.create),
+	authenticate('jwt'),
+	checkPermission(user => ({
+		roles: user.role,
+		permission: '<%= h.inflection.pluralize(name) %>:create',
+	})),
+	requestValidate([
+		//...fields
+	]),
 	responseJSON(create)
 );
 
 router.patch(
 	'/:id',
-	requestValidate(rules.create),
+	authenticate('jwt'),
+	checkPermission(user => ({
+		roles: user.role,
+		permission: '<%= h.inflection.pluralize(name) %>:update',
+	})),
+	requestValidate([
+		//...fields
+	]),
 	responseJSON(update)
 );
 
 router.delete(
 	'/:id',
+	authenticate('jwt'),
+	checkPermission(user => ({
+		roles: user.role,
+		permission: '<%= h.inflection.pluralize(name) %>:remove',
+	})),
 	responseJSON(remove)
 );
 
