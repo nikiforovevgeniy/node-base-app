@@ -1,10 +1,7 @@
 module.exports = {
 	user: {
 		can: [
-			{
-				name: 'users:getOne',
-				when: params => true
-			}
+			'users:self',
 		],
 	},
 	admin: {
