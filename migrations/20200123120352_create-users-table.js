@@ -6,8 +6,8 @@ exports.up = function(knex) {
 		table.string('password');
 		table.string('role');
 		table.string('service');
-		table.timestamp('created_at').defaultTo(knex.fn.now());
-		table.timestamp('updated_at').defaultTo(knex.fn.now());
+		table.datetime('created_at').defaultTo(knex.fn.now());
+		table.datetime('updated_at').defaultTo(knex.fn.now());
 	})
 };
 
