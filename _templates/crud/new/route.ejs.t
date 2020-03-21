@@ -32,7 +32,7 @@ router.post(
 		roles: user.role,
 		permission: '<%= h.inflection.pluralize(name) %>:create',
 	})),
-	requestValidate([
+	validate([
 		//...fields
 	]),
 	responseJSON(create)
@@ -45,7 +45,7 @@ router.patch(
 		roles: user.role,
 		permission: '<%= h.inflection.pluralize(name) %>:update',
 	})),
-	requestValidate([
+	validate([
 		//...fields
 	]),
 	responseJSON(update)
