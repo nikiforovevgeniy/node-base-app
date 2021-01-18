@@ -1,5 +1,5 @@
 ---
-to: models/<%= name %>.js
+to: src/models/<%= name %>.js
 ---
 const bookshelf = require('@/bookshelf');
 
